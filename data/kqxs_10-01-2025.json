@@ -1,0 +1,56 @@
+{
+  "date": "10-01-2025",
+  "title": "Xổ số Miền Nam Thứ Sáu 10-01-2025",
+  "regions": [
+    "Vĩnh Long",
+    "Bình Dương",
+    "Trà Vinh"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Vĩnh Long": "39",
+      "Bình Dương": "09",
+      "Trà Vinh": "75"
+    },
+    "Giải bảy": {
+      "Vĩnh Long": "750",
+      "Bình Dương": "884",
+      "Trà Vinh": "604"
+    },
+    "Giải sáu": {
+      "Vĩnh Long": "6198",
+      "Bình Dương": "8900",
+      "Trà Vinh": "5994"
+    },
+    "Giải năm": {
+      "Vĩnh Long": "0223",
+      "Bình Dương": "5260",
+      "Trà Vinh": "1128"
+    },
+    "Giải tư": {
+      "Vĩnh Long": "05168",
+      "Bình Dương": "14332",
+      "Trà Vinh": "23543"
+    },
+    "Giải ba": {
+      "Vĩnh Long": "78795",
+      "Bình Dương": "14608",
+      "Trà Vinh": "81068"
+    },
+    "Giải nhì": {
+      "Vĩnh Long": "08686",
+      "Bình Dương": "82346",
+      "Trà Vinh": "37439"
+    },
+    "Giải nhất": {
+      "Vĩnh Long": "78863",
+      "Bình Dương": "02980",
+      "Trà Vinh": "53859"
+    },
+    "Đặc biệt": {
+      "Vĩnh Long": "639293",
+      "Bình Dương": "872019",
+      "Trà Vinh": "476455"
+    }
+  }
+}

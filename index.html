@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kết quả Xổ số</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f2f2;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        select,
+        .day-selector button,
+        #todayBtn,
+        #doVeSo,
+        #lastTwoCheckbox {
+            margin: 4px;
+            padding: 6px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .day-selector button,
+        #todayBtn{
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #doVeSo {
+            background: #3437db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .day-selector button:hover,
+        #todayBtn:hover {
+            background: #2980b9;
+        }
+
+        .day-selector button.selected {
+            background: #2ecc71 !important;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: white;
+        }
+
+        tr.special td {
+            background-color: #e74c3c !important;
+            color: white;
+            font-weight: bold;
+        }
+
+        .number-cell {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .checkbox-wrapper {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .checkbox-wrapper label {
+            font-size: 14px;
+            cursor: pointer;
+            margin-left: 6px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 20px;
+            color: #666;
+        }
+
+        .highlight {
+            background-color: yellow !important;
+            animation: blink 0.5s step-start 0s 3;
+        }
+        .red {
+            color:red;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        #modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modalContent {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            width: 300px;
+        }
+
+        #modalContent select,
+        #modalContent input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        #modalContent button {
+            width: 100%;
+            padding: 8px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media print {
+
+            .controls,
+            .checkbox-wrapper,
+            #modal {
+                display: none !important;
+            }
+
+            tr.special td,
+            th {
+                background: none !important;
+                color: black !important;
+            }
+
+            .footer {
+                display: block;
+            }
+        }
+
+        #alertBox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #alertContent {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 16px;
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: popIn 0.3s ease;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="title">Đang tải...</h1>
+
+        <div class="controls">
+            <label>Chọn tháng:</label>
+            <select id="monthSelect"></select>
+            <label>Chọn năm:</label>
+            <select id="yearSelect"></select>
+            <button id="todayBtn">Hôm nay</button>
+            <button id="doVeSo" onclick="document.getElementById('modal').style.display='flex'">Dò số</button>
+        </div>
+
+        <div class="controls">
+            <strong>Ngày</strong><br />
+            <div class="day-selector" id="daySelector"></div>
+        </div>
+
+        <div class="checkbox-wrapper">
+            <input type="checkbox" id="lastTwoCheckbox" />
+            <label for="lastTwoCheckbox">Chỉ hiển thị 2 số cuối</label>
+        </div>
+
+        <table>
+            <thead>
+                <tr id="tableHeader"></tr>
+            </thead>
+            <tbody id="resultBody"></tbody>
+        </table>
+
+        <div class="footer">https://example.com</div>
+    </div>
+
+    <div id="modal">
+        <div id="modalContent">
+            <select id="provinceSelect"></select>
+            <input type="text" id="searchNumber" placeholder="Nhập 6 số" maxlength="6"
+                onkeypress="if(event.key==='Enter') searchNumber()" />
+            <button onclick="searchNumber()">Tìm</button>
+        </div>
+    </div>
+
+    <div id="alertBox" style="display:none;">
+        <div id="alertContent"></div>
+    </div>
+
+    <script>
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth();
+        const currentDay = now.getDate();
+
+        let selectedDateStr = '';
+        let fullDataCache = null;
+
+        function pad(n) {
+            return String(n).padStart(2, '0');
+        }
+
+        function daysInMonth(month, year) {
+            return new Date(year, month + 1, 0).getDate();
+        }
+
+        function updateTitle(title) {
+            document.getElementById('title').innerText = title;
+            document.title = title;
+        }
+
+        function formatNumber(number, onlyLast2) {
+            if (!number) return '';
+            return onlyLast2 ? number.toString().slice(-2) : number;
+        }
+
+        function renderTable(data, onlyLast2) {
+            const regions = data.regions;
+            const prizes = data.prizes;
+
+            const headerRow = document.getElementById('tableHeader');
+            headerRow.innerHTML = '';
+            const prizeHeader = document.createElement('th');
+            prizeHeader.textContent = 'Giải';
+            headerRow.appendChild(prizeHeader);
+
+            regions.forEach(region => {
+                const th = document.createElement('th');
+                th.textContent = region;
+                headerRow.appendChild(th);
+            });
+
+            const tbody = document.getElementById('resultBody');
+            tbody.innerHTML = '';
+
+            for (const prizeName in prizes) {
+                const row = document.createElement('tr');
+                if (prizeName === "Đặc biệt") row.classList.add('special');
+
+                const prizeCell = document.createElement('td');
+                prizeCell.textContent = prizeName;
+                row.appendChild(prizeCell);
+
+                regions.forEach(region => {
+                    const cell = document.createElement('td');
+                    const prizeData = prizes[prizeName];
+                    const value = prizeData && prizeData[region] ? formatNumber(prizeData[region], onlyLast2) : '';
+                    cell.innerHTML = `<span class="number-cell">${value}</span>`;
+                    row.appendChild(cell);
+                });
+
+                tbody.appendChild(row);
+            }
+        }
+
+        function searchNumber() {
+            const province = document.getElementById('provinceSelect').value;
+            const number = document.getElementById('searchNumber').value;
+            document.getElementById('modal').style.display = 'none';
+
+            if (!number || number.length !== 6 || !/^[0-9]{6}$/.test(number)) {
+                showAlert('Vui lòng nhập đúng 6 chữ số.');
+                return;
+            }
+
+            let found = false;
+            const spans = document.querySelectorAll('tbody tr');
+
+            spans.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells.length < 2) return;
+                const regionIndex = Array.from(cells).findIndex((cell, idx) => idx > 0 && fullDataCache.regions[idx - 1] === province);
+                if (regionIndex !== -1) {
+                    const span = cells[regionIndex].querySelector('.number-cell');
+                    if (!span) return;
+                    const value = span.innerText.trim();
+
+                    for (let i = 2; i <= 6; i++) {
+                        if (value.slice(-i) === number.slice(-i)) {
+                            cells[regionIndex].classList.add('highlight');
+                            found = true;
+                            showAlert(`Chúc mừng bạn đã trúng <b>${cells[0].textContent}</b> số <b class="red">${value}</b>`);
+                            break;
+                        }
+                    }
+                }
+            });
+
+            if (!found) showAlert('Không trúng thưởng.');
+        }
+
+        function loadData(dateStr) {
+            selectedDateStr = dateStr;
+            const url = `data/kqxs_${dateStr}.json`;
+            fetch(url)
+                .then(res => {
+                    if (!res.ok) throw new Error("Không tìm thấy dữ liệu");
+                    return res.json();
+                })
+                .then(data => {
+                    fullDataCache = data;
+                    updateTitle(data.title);
+                    const onlyLast2 = document.getElementById('lastTwoCheckbox').checked;
+                    renderTable(data, onlyLast2);
+                    const provinceSelect = document.getElementById('provinceSelect');
+                    provinceSelect.innerHTML = '';
+                    data.regions.forEach(r => {
+                        const opt = document.createElement('option');
+                        opt.value = r;
+                        opt.textContent = r;
+                        provinceSelect.appendChild(opt);
+                    });
+
+                    document.querySelector('.footer').textContent = location.href;
+                    document.querySelector('.footer').style.display = 'block';
+
+                    highlightSelectedDate();
+                })
+                .catch(err => {
+                    updateTitle('Không thể tải dữ liệu');
+                    document.getElementById('tableHeader').innerHTML = '';
+                    document.getElementById('resultBody').innerHTML = '';
+                    console.error(err);
+                });
+        }
+
+        function highlightSelectedDate() {
+            document.querySelectorAll('.day-selector button').forEach(btn => {
+                if (btn.dataset.date === selectedDateStr) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+        }
+
+        function updateDayButtons(monthIndex, year) {
+            const dayContainer = document.getElementById('daySelector');
+            dayContainer.innerHTML = '';
+
+            let totalDays = daysInMonth(monthIndex, year);
+            if (year === currentYear && monthIndex === currentMonth) {
+                totalDays = currentDay;
+            }
+
+            for (let d = 1; d <= totalDays; d++) {
+                const btn = document.createElement('button');
+                btn.textContent = pad(d);
+                const fullDate = `${pad(d)}-${pad(monthIndex + 1)}-${year}`;
+                btn.dataset.date = fullDate;
+                btn.onclick = () => {
+                    loadData(fullDate);
+                };
+                dayContainer.appendChild(btn);
+            }
+
+            loadData(`01-${pad(monthIndex + 1)}-${year}`);
+        }
+
+        function createMonthOptions(selectedMonth = currentMonth) {
+            const select = document.getElementById('monthSelect');
+            select.innerHTML = '';
+            const maxMonth = (document.getElementById('yearSelect')?.value == currentYear) ? currentMonth : 11;
+            for (let m = 0; m <= maxMonth; m++) {
+                const opt = document.createElement('option');
+                opt.value = m;
+                opt.textContent = `Tháng ${m + 1}`;
+                if (m === selectedMonth) opt.selected = true;
+                select.appendChild(opt);
+            }
+        }
+
+        function createYearOptions(selectedYear = currentYear) {
+            const select = document.getElementById('yearSelect');
+            select.innerHTML = '';
+            const years = [currentYear - 1, currentYear];
+            years.forEach(y => {
+                const opt = document.createElement('option');
+                opt.value = y;
+                opt.textContent = y;
+                if (y === selectedYear) opt.selected = true;
+                select.appendChild(opt);
+            });
+        }
+
+        function showAlert(message, duration = 2500) {
+            const box = document.getElementById('alertBox');
+            const content = document.getElementById('alertContent');
+            content.innerHTML = message;
+            box.style.display = 'flex';
+
+            // setTimeout(() => {
+            //     box.style.display = 'none';
+            // }, duration);
+        }
+
+        function init() {
+            createYearOptions();
+            createMonthOptions();
+
+            const monthSelect = document.getElementById('monthSelect');
+            const yearSelect = document.getElementById('yearSelect');
+
+            function refresh() {
+                const y = parseInt(yearSelect.value);
+                createMonthOptions(parseInt(monthSelect.value));
+                const m = parseInt(monthSelect.value);
+                updateDayButtons(m, y);
+            }
+
+            monthSelect.addEventListener('change', refresh);
+            yearSelect.addEventListener('change', refresh);
+
+            document.getElementById('todayBtn').addEventListener('click', () => {
+                yearSelect.value = currentYear;
+                createMonthOptions(currentMonth);
+                monthSelect.value = currentMonth;
+                updateDayButtons(currentMonth, currentYear);
+                loadData(`${pad(currentDay)}-${pad(currentMonth + 1)}-${currentYear}`);
+            });
+
+            document.getElementById('lastTwoCheckbox').addEventListener('change', () => {
+                if (fullDataCache) {
+                    const onlyLast2 = document.getElementById('lastTwoCheckbox').checked;
+                    renderTable(fullDataCache, onlyLast2);
+                }
+            });
+
+            document.getElementById('modal').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+            document.getElementById('alertBox').addEventListener('click', function (e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                }
+            });
+
+            updateDayButtons(currentMonth, currentYear);
+            loadData(`${pad(currentDay)}-${pad(currentMonth + 1)}-${currentYear}`);
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

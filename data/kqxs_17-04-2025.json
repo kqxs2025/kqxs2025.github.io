@@ -1,0 +1,56 @@
+{
+  "date": "17-04-2025",
+  "title": "Xổ số Miền Nam Thứ năm 17-04-2025",
+  "regions": [
+    "Tây Ninh",
+    "An Giang",
+    "Bình Thuận"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Tây Ninh": "87",
+      "An Giang": "63",
+      "Bình Thuận": "35"
+    },
+    "Giải bảy": {
+      "Tây Ninh": "829",
+      "An Giang": "166",
+      "Bình Thuận": "278"
+    },
+    "Giải sáu": {
+      "Tây Ninh": "5810",
+      "An Giang": "6237",
+      "Bình Thuận": "5682"
+    },
+    "Giải năm": {
+      "Tây Ninh": "5467",
+      "An Giang": "1060",
+      "Bình Thuận": "7640"
+    },
+    "Giải tư": {
+      "Tây Ninh": "30669",
+      "An Giang": "32571",
+      "Bình Thuận": "24913"
+    },
+    "Giải ba": {
+      "Tây Ninh": "03173",
+      "An Giang": "62126",
+      "Bình Thuận": "33565"
+    },
+    "Giải nhì": {
+      "Tây Ninh": "09652",
+      "An Giang": "92074",
+      "Bình Thuận": "63620"
+    },
+    "Giải nhất": {
+      "Tây Ninh": "02488",
+      "An Giang": "44132",
+      "Bình Thuận": "34407"
+    },
+    "Đặc biệt": {
+      "Tây Ninh": "697070",
+      "An Giang": "717323",
+      "Bình Thuận": "646269"
+    }
+  }
+}

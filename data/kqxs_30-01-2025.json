@@ -1,0 +1,56 @@
+{
+  "date": "30-01-2025",
+  "title": "Xổ số Miền Nam Thứ năm 30-01-2025",
+  "regions": [
+    "Tây Ninh",
+    "An Giang",
+    "Bình Thuận"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Tây Ninh": "32",
+      "An Giang": "41",
+      "Bình Thuận": "99"
+    },
+    "Giải bảy": {
+      "Tây Ninh": "751",
+      "An Giang": "779",
+      "Bình Thuận": "244"
+    },
+    "Giải sáu": {
+      "Tây Ninh": "7179",
+      "An Giang": "9162",
+      "Bình Thuận": "9000"
+    },
+    "Giải năm": {
+      "Tây Ninh": "2711",
+      "An Giang": "3349",
+      "Bình Thuận": "4744"
+    },
+    "Giải tư": {
+      "Tây Ninh": "99590",
+      "An Giang": "92092",
+      "Bình Thuận": "88565"
+    },
+    "Giải ba": {
+      "Tây Ninh": "47032",
+      "An Giang": "08903",
+      "Bình Thuận": "11742"
+    },
+    "Giải nhì": {
+      "Tây Ninh": "40360",
+      "An Giang": "53808",
+      "Bình Thuận": "73678"
+    },
+    "Giải nhất": {
+      "Tây Ninh": "59352",
+      "An Giang": "03564",
+      "Bình Thuận": "90447"
+    },
+    "Đặc biệt": {
+      "Tây Ninh": "339898",
+      "An Giang": "890756",
+      "Bình Thuận": "406289"
+    }
+  }
+}

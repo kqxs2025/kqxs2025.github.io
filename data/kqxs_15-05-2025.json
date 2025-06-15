@@ -1,0 +1,56 @@
+{
+  "date": "15-05-2025",
+  "title": "Xổ số Miền Nam Thứ năm 15-05-2025",
+  "regions": [
+    "Tây Ninh",
+    "An Giang",
+    "Bình Thuận"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Tây Ninh": "16",
+      "An Giang": "38",
+      "Bình Thuận": "59"
+    },
+    "Giải bảy": {
+      "Tây Ninh": "836",
+      "An Giang": "916",
+      "Bình Thuận": "596"
+    },
+    "Giải sáu": {
+      "Tây Ninh": "1879",
+      "An Giang": "3410",
+      "Bình Thuận": "2255"
+    },
+    "Giải năm": {
+      "Tây Ninh": "4952",
+      "An Giang": "0042",
+      "Bình Thuận": "7699"
+    },
+    "Giải tư": {
+      "Tây Ninh": "89975",
+      "An Giang": "65552",
+      "Bình Thuận": "52382"
+    },
+    "Giải ba": {
+      "Tây Ninh": "58522",
+      "An Giang": "50536",
+      "Bình Thuận": "04879"
+    },
+    "Giải nhì": {
+      "Tây Ninh": "48356",
+      "An Giang": "54484",
+      "Bình Thuận": "45555"
+    },
+    "Giải nhất": {
+      "Tây Ninh": "06170",
+      "An Giang": "37785",
+      "Bình Thuận": "57251"
+    },
+    "Đặc biệt": {
+      "Tây Ninh": "677051",
+      "An Giang": "777059",
+      "Bình Thuận": "096701"
+    }
+  }
+}

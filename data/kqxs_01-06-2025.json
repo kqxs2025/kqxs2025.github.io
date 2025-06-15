@@ -1,0 +1,56 @@
+{
+  "date": "01-06-2025",
+  "title": "Xổ số Miền Nam Chủ Nhật 01-06-2025",
+  "regions": [
+    "Tiền Giang",
+    "Kiên Giang",
+    "Đà Lạt"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Tiền Giang": "33",
+      "Kiên Giang": "68",
+      "Đà Lạt": "28"
+    },
+    "Giải bảy": {
+      "Tiền Giang": "852",
+      "Kiên Giang": "935",
+      "Đà Lạt": "738"
+    },
+    "Giải sáu": {
+      "Tiền Giang": "8460",
+      "Kiên Giang": "1806",
+      "Đà Lạt": "6501"
+    },
+    "Giải năm": {
+      "Tiền Giang": "1445",
+      "Kiên Giang": "1574",
+      "Đà Lạt": "8764"
+    },
+    "Giải tư": {
+      "Tiền Giang": "74174",
+      "Kiên Giang": "58571",
+      "Đà Lạt": "63103"
+    },
+    "Giải ba": {
+      "Tiền Giang": "63729",
+      "Kiên Giang": "92453",
+      "Đà Lạt": "75238"
+    },
+    "Giải nhì": {
+      "Tiền Giang": "30574",
+      "Kiên Giang": "53955",
+      "Đà Lạt": "39759"
+    },
+    "Giải nhất": {
+      "Tiền Giang": "12564",
+      "Kiên Giang": "56201",
+      "Đà Lạt": "93372"
+    },
+    "Đặc biệt": {
+      "Tiền Giang": "118779",
+      "Kiên Giang": "688371",
+      "Đà Lạt": "354263"
+    }
+  }
+}

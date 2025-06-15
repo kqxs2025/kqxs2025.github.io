@@ -1,0 +1,56 @@
+{
+  "date": "12-01-2025",
+  "title": "Xổ số Miền Nam Chủ Nhật 12-01-2025",
+  "regions": [
+    "Tiền Giang",
+    "Kiên Giang",
+    "Đà Lạt"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Tiền Giang": "43",
+      "Kiên Giang": "33",
+      "Đà Lạt": "56"
+    },
+    "Giải bảy": {
+      "Tiền Giang": "022",
+      "Kiên Giang": "349",
+      "Đà Lạt": "474"
+    },
+    "Giải sáu": {
+      "Tiền Giang": "4654",
+      "Kiên Giang": "3146",
+      "Đà Lạt": "0811"
+    },
+    "Giải năm": {
+      "Tiền Giang": "3120",
+      "Kiên Giang": "5427",
+      "Đà Lạt": "5226"
+    },
+    "Giải tư": {
+      "Tiền Giang": "20872",
+      "Kiên Giang": "51198",
+      "Đà Lạt": "25095"
+    },
+    "Giải ba": {
+      "Tiền Giang": "53138",
+      "Kiên Giang": "66151",
+      "Đà Lạt": "31952"
+    },
+    "Giải nhì": {
+      "Tiền Giang": "27788",
+      "Kiên Giang": "36828",
+      "Đà Lạt": "90600"
+    },
+    "Giải nhất": {
+      "Tiền Giang": "25927",
+      "Kiên Giang": "49050",
+      "Đà Lạt": "97329"
+    },
+    "Đặc biệt": {
+      "Tiền Giang": "115102",
+      "Kiên Giang": "400769",
+      "Đà Lạt": "812551"
+    }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "date": "22-02-2025",
+  "title": "Xổ số Miền Nam Thứ Bảy 22-02-2025",
+  "regions": [
+    "Hồ Chí Minh",
+    "Long An",
+    "Bình Phước",
+    "Hậu Giang"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Hồ Chí Minh": "49",
+      "Long An": "10",
+      "Bình Phước": "57",
+      "Hậu Giang": "80"
+    },
+    "Giải bảy": {
+      "Hồ Chí Minh": "410",
+      "Long An": "561",
+      "Bình Phước": "247",
+      "Hậu Giang": "471"
+    },
+    "Giải sáu": {
+      "Hồ Chí Minh": "8638",
+      "Long An": "4363",
+      "Bình Phước": "7897",
+      "Hậu Giang": "7800"
+    },
+    "Giải năm": {
+      "Hồ Chí Minh": "6353",
+      "Long An": "3838",
+      "Bình Phước": "2698",
+      "Hậu Giang": "9075"
+    },
+    "Giải tư": {
+      "Hồ Chí Minh": "06113",
+      "Long An": "66534",
+      "Bình Phước": "19374",
+      "Hậu Giang": "06699"
+    },
+    "Giải ba": {
+      "Hồ Chí Minh": "21690",
+      "Long An": "69187",
+      "Bình Phước": "01246",
+      "Hậu Giang": "51442"
+    },
+    "Giải nhì": {
+      "Hồ Chí Minh": "66875",
+      "Long An": "54932",
+      "Bình Phước": "35789",
+      "Hậu Giang": "65649"
+    },
+    "Giải nhất": {
+      "Hồ Chí Minh": "94063",
+      "Long An": "36535",
+      "Bình Phước": "54275",
+      "Hậu Giang": "33585"
+    },
+    "Đặc biệt": {
+      "Hồ Chí Minh": "275415",
+      "Long An": "128524",
+      "Bình Phước": "554013",
+      "Hậu Giang": "748335"
+    }
+  }
+}

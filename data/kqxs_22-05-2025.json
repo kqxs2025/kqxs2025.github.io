@@ -1,0 +1,56 @@
+{
+  "date": "22-05-2025",
+  "title": "Xổ số Miền Nam Thứ năm 22-05-2025",
+  "regions": [
+    "Tây Ninh",
+    "An Giang",
+    "Bình Thuận"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Tây Ninh": "81",
+      "An Giang": "27",
+      "Bình Thuận": "50"
+    },
+    "Giải bảy": {
+      "Tây Ninh": "694",
+      "An Giang": "163",
+      "Bình Thuận": "361"
+    },
+    "Giải sáu": {
+      "Tây Ninh": "1244",
+      "An Giang": "1426",
+      "Bình Thuận": "5304"
+    },
+    "Giải năm": {
+      "Tây Ninh": "1204",
+      "An Giang": "8475",
+      "Bình Thuận": "4592"
+    },
+    "Giải tư": {
+      "Tây Ninh": "34738",
+      "An Giang": "26015",
+      "Bình Thuận": "54302"
+    },
+    "Giải ba": {
+      "Tây Ninh": "14627",
+      "An Giang": "57642",
+      "Bình Thuận": "64494"
+    },
+    "Giải nhì": {
+      "Tây Ninh": "32548",
+      "An Giang": "52236",
+      "Bình Thuận": "05252"
+    },
+    "Giải nhất": {
+      "Tây Ninh": "62764",
+      "An Giang": "49482",
+      "Bình Thuận": "50973"
+    },
+    "Đặc biệt": {
+      "Tây Ninh": "641435",
+      "An Giang": "072325",
+      "Bình Thuận": "044826"
+    }
+  }
+}

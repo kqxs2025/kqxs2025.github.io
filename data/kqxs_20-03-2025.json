@@ -1,0 +1,56 @@
+{
+  "date": "20-03-2025",
+  "title": "Xổ số Miền Nam Thứ năm 20-03-2025",
+  "regions": [
+    "Tây Ninh",
+    "An Giang",
+    "Bình Thuận"
+  ],
+  "prizes": {
+    "Giải tám": {
+      "Tây Ninh": "85",
+      "An Giang": "43",
+      "Bình Thuận": "34"
+    },
+    "Giải bảy": {
+      "Tây Ninh": "499",
+      "An Giang": "102",
+      "Bình Thuận": "386"
+    },
+    "Giải sáu": {
+      "Tây Ninh": "9717",
+      "An Giang": "3870",
+      "Bình Thuận": "8587"
+    },
+    "Giải năm": {
+      "Tây Ninh": "9034",
+      "An Giang": "7146",
+      "Bình Thuận": "3086"
+    },
+    "Giải tư": {
+      "Tây Ninh": "62509",
+      "An Giang": "60677",
+      "Bình Thuận": "07722"
+    },
+    "Giải ba": {
+      "Tây Ninh": "79913",
+      "An Giang": "82669",
+      "Bình Thuận": "47343"
+    },
+    "Giải nhì": {
+      "Tây Ninh": "71781",
+      "An Giang": "59000",
+      "Bình Thuận": "22258"
+    },
+    "Giải nhất": {
+      "Tây Ninh": "40684",
+      "An Giang": "96972",
+      "Bình Thuận": "05159"
+    },
+    "Đặc biệt": {
+      "Tây Ninh": "207932",
+      "An Giang": "677111",
+      "Bình Thuận": "403045"
+    }
+  }
+}
