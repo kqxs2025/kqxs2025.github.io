@@ -1,8 +1,22 @@
 
         const now = new Date();
-        const currentYear = now.getFullYear();
-        const currentMonth = now.getMonth();
-        const currentDay = now.getDate();
+        let currentYear = now.getFullYear();
+        let currentMonth = now.getMonth();
+        let currentDay = now.getDate();
+        if (now.getHours() < 16) {
+            if (currentDay === 1) {
+                // Move to last day of previous month
+                if (currentMonth === 0) {
+                    currentMonth = 11;
+                    currentYear -= 1;
+                } else {
+                    currentMonth -= 1;
+                }
+                currentDay = daysInMonth(currentMonth, currentYear);
+            } else {
+                currentDay -= 1;
+            }
+        }
 
         let selectedDateStr = '';
         let fullDataCache = null;
@@ -162,7 +176,7 @@
                 dayContainer.appendChild(btn);
             }
 
-            loadData(`01-${pad(monthIndex + 1)}-${year}`);
+            // loadData(`01-${pad(monthIndex + 1)}-${year}`);
         }
 
         function createMonthOptions(selectedMonth = currentMonth) {
