@@ -377,7 +377,7 @@
             const url = `data/kqxs_${dateStr}.json`;
             fetch(url)
                 .then(res => {
-                    if (!res.ok) throw new Error("Không tìm thấy dữ liệu");
+                    if (!res.ok) throw new Error("Kết quả xổ số đang được cập nhật.");
                     return res.json();
                 })
                 .then(data => {
