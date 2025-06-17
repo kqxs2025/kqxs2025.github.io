@@ -5,6 +5,24 @@ body {
     display: flex;
     justify-content: center;
 }
+@media (max-width: 600px) {
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: white;
+    }
+    .container {
+        width: 100%;
+        padding: 0px !important;
+        box-shadow: none;
+    }
+    .container.print .footer br {
+        display: block !important;
+    }
+    .container.print .imgfooter {
+        position: relative !important; top:0 !important; left: 0 !important;
+    }
+}
 
 .container {
     max-width: 800px;
@@ -183,28 +201,38 @@ tr.special td {
         box-shadow: none !important;
     }
 }
-
 .container.print {
-    h1 {
-        font-size: 20px;
-    }
-    .controls,
-    .checkbox-wrapper,
-    #modal,
-    .mini-menu {
-        display: none !important;
-    }
-    tr.special td,
-    th {
-        background: none !important;
-        color: black !important;
-    }
-    .footer {
-        display: block;
-    }
-    .container {
-        box-shadow: none !important;
-    }
+    max-width: 500px;
+}
+.container.print .imgfooter {
+    width: 60px !important;
+    position: absolute;
+    top: 2px;
+    left: 18px;
+}
+.container.print .footer br {
+    display: none;
+}
+
+.container.print h1 {
+    font-size: 20px;
+}
+.container.print .controls,
+.container.print .checkbox-wrapper,
+.container.print #modal,
+.container.print .mini-menu {
+    display: none !important;
+}
+.container.print tr.special td,
+.container.print th {
+    background: none !important;
+    color: black !important;
+}
+.container.print .footer {
+    display: block;
+}
+.container.print .container {
+    box-shadow: none !important;
 }
 
 #alertBox {
