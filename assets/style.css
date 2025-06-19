@@ -103,6 +103,10 @@ tr.special td {
     font-weight: bold;
 }
 
+.calendar-table td {
+    padding: 0px;
+}
+
 .number-cell {
     font-weight: bold;
     font-size: 20px;
