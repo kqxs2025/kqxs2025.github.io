@@ -36,6 +36,9 @@
 
         function formatNumber(number, onlyLast2) {
             if (!number) return '';
+            if (Array.isArray(number)) {
+                return number.map(n => onlyLast2 ? n.toString().slice(-2) : n);
+            }
             return onlyLast2 ? number.toString().slice(-2) : number;
         }
 
@@ -69,7 +72,10 @@
                 regions.forEach(region => {
                     const cell = document.createElement('td');
                     const prizeData = prizes[prizeName];
-                    const value = prizeData && prizeData[region] ? formatNumber(prizeData[region], onlyLast2) : '';
+                    var value = prizeData && prizeData[region] ? formatNumber(prizeData[region], onlyLast2) : '';
+                    if (Array.isArray(value)) {
+                        value = value.join("<br>");
+                    }
                     cell.innerHTML = `<span class="number-cell">${value}</span>`;
                     row.appendChild(cell);
                 });
@@ -100,12 +106,13 @@
                     if (!span) return;
                     const value = span.innerText.trim();
 
-                    for (let i = 2; i <= 6; i++) {
-                        if (value.slice(-i) === number.slice(-i)) {
-                            cells[regionIndex].classList.add('highlight');
+                    var values = value.split("\n").map(v => v.trim());
+                    if (values.length === 0) return;
+                    for (const v of values) {
+                        if (v === number.slice(6-v.length)) {
+                            span.innerHTML = span.innerHTML.replace(v, `<span class="highlight">${v}</span>`);
                             found = true;
-                            showAlert(`Chúc mừng bạn đã trúng <b>${cells[0].textContent}</b> số <b class="red">${value}</b>`);
-                            break;
+                            showAlert(`Chúc mừng bạn đã trúng <b>${cells[0].textContent}</b> số <b class="red">${v}</b>`);
                         }
                     }
                 }
@@ -116,7 +123,8 @@
 
         function loadData(dateStr) {
             selectedDateStr = dateStr;
-            const url = `data/kqxs_${dateStr}.json`;
+            var dateParts = dateStr.split('-');
+            const url = `data/${dateParts[2]}/${dateParts[1]}/kqxs_${dateStr}.json`;
             fetch(url)
                 .then(res => {
                     if (!res.ok) throw new Error("Kết quả xổ số đang được cập nhật.");
@@ -165,7 +173,28 @@
                 totalDays = currentDay;
             }
 
+            // Get the weekday of the 1st day in the month (0=Sunday, 1=Monday, ..., 6=Saturday)
+            const firstDay = new Date(year, monthIndex, 1).getDay();
+
+            // Create a table for calendar style
+            const table = document.createElement('table');
+            table.className = 'calendar-table';
+            const tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+
+            let row = document.createElement('tr');
+            // Add empty cells before the first day
+            for (let i = 0; i < firstDay; i++) {
+                const emptyCell = document.createElement('td');
+                row.appendChild(emptyCell);
+            }
+
             for (let d = 1; d <= totalDays; d++) {
+                if ((firstDay + d - 1) % 7 === 0 && d !== 1) {
+                    tbody.appendChild(row);
+                    row = document.createElement('tr');
+                }
+                const cell = document.createElement('td');
                 const btn = document.createElement('button');
                 btn.textContent = pad(d);
                 const fullDate = `${pad(d)}-${pad(monthIndex + 1)}-${year}`;
@@ -173,10 +202,24 @@
                 btn.onclick = () => {
                     loadData(fullDate);
                 };
-                dayContainer.appendChild(btn);
+                cell.appendChild(btn);
+                row.appendChild(cell);
             }
 
-            // loadData(`01-${pad(monthIndex + 1)}-${year}`);
+            // Fill the rest of the row with empty cells if needed
+            while (row.children.length < 7) {
+                const emptyCell = document.createElement('td');
+                row.appendChild(emptyCell);
+            }
+            tbody.appendChild(row);
+
+            dayContainer.appendChild(table);
+
+            // Optionally, highlight the first day
+            const firstDayBtn = dayContainer.querySelector('button[data-date]');
+            if (firstDayBtn) {
+                firstDayBtn.classList.add('selected');
+            }
         }
 
         function createMonthOptions(selectedMonth = currentMonth) {
