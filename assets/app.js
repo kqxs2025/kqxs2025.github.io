@@ -145,6 +145,7 @@
                     });
 
                     highlightSelectedDate();
+                    window.history.replaceState({}, '', `/?date=${dateStr}`);
                 })
                 .catch(err => {
                     highlightSelectedDate();
@@ -283,7 +284,6 @@
             const monthSelect = document.getElementById('monthSelect');
             const yearSelect = document.getElementById('yearSelect');
 
-
             monthSelect.addEventListener('change', refresh);
             yearSelect.addEventListener('change', refresh);
 
@@ -320,6 +320,21 @@
             });
 
             updateDayButtons(currentMonth, currentYear);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            let defaultDate = null;
+            if (urlParams.has('date')) {
+                const dateParam = urlParams.get('date');
+                if (/^\d{2}-\d{2}-\d{4}$/.test(dateParam)) {
+                    const [d, m, y] = dateParam.split('-').map(Number);
+                    if (d >= 1 && d <= 31 && m >= 1 && m <= 12 && y >= currentYear - 1 && y <= currentYear) {
+                        currentDay = d;
+                        currentMonth = m - 1;
+                        currentYear = y;
+                        defaultDate = dateParam;
+                    }
+                }
+            }
             loadData(`${pad(currentDay)}-${pad(currentMonth + 1)}-${currentYear}`);
         }
 
