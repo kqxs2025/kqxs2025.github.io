@@ -145,12 +145,24 @@
                     });
 
                     highlightSelectedDate();
+                    window.history.replaceState({}, '', `/?date=${dateStr}`);
                 })
                 .catch(err => {
-                    updateTitle('Không thể tải dữ liệu');
-                    document.getElementById('tableHeader').innerHTML = '';
-                    document.getElementById('resultBody').innerHTML = '';
-                    console.error(err);
+                    highlightSelectedDate();
+                    var buttons = document.querySelectorAll('.calendar-table button');
+                    if (buttons[0].className.indexOf("selected")>-1) {
+                        document.body.querySelector('#monthSelect').value--;
+                        refresh();
+                        var buttons = document.querySelectorAll('.calendar-table button');
+                        buttons[buttons.length-1].click();
+                        return;
+                    }
+
+                    for (var i=0;i<buttons.length;i++) {
+                        if (buttons[i].className.indexOf("selected")>-1){
+                            buttons[i-1].click(); break;
+                        }
+                    }
                 });
         }
 
@@ -259,19 +271,18 @@
             // }, duration);
         }
 
+        function refresh() {
+            const y = parseInt(yearSelect.value);
+            createMonthOptions(parseInt(monthSelect.value));
+            const m = parseInt(monthSelect.value);
+            updateDayButtons(m, y);
+        }
         function init() {
             createYearOptions();
             createMonthOptions();
 
             const monthSelect = document.getElementById('monthSelect');
             const yearSelect = document.getElementById('yearSelect');
-
-            function refresh() {
-                const y = parseInt(yearSelect.value);
-                createMonthOptions(parseInt(monthSelect.value));
-                const m = parseInt(monthSelect.value);
-                updateDayButtons(m, y);
-            }
 
             monthSelect.addEventListener('change', refresh);
             yearSelect.addEventListener('change', refresh);
@@ -309,6 +320,21 @@
             });
 
             updateDayButtons(currentMonth, currentYear);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            let defaultDate = null;
+            if (urlParams.has('date')) {
+                const dateParam = urlParams.get('date');
+                if (/^\d{2}-\d{2}-\d{4}$/.test(dateParam)) {
+                    const [d, m, y] = dateParam.split('-').map(Number);
+                    if (d >= 1 && d <= 31 && m >= 1 && m <= 12 && y >= currentYear - 1 && y <= currentYear) {
+                        currentDay = d;
+                        currentMonth = m - 1;
+                        currentYear = y;
+                        defaultDate = dateParam;
+                    }
+                }
+            }
             loadData(`${pad(currentDay)}-${pad(currentMonth + 1)}-${currentYear}`);
         }
 

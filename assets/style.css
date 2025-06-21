@@ -63,6 +63,9 @@ select,
     border: none;
     cursor: pointer;
 }
+.day-selector button {
+    background: #4f4f4f;
+}
 
 #doVeSo {
     background: #3437db;
@@ -70,13 +73,14 @@ select,
     border: none;
     cursor: pointer;
 }
-.day-selector button:hover,
 #todayBtn:hover {
     background: #2980b9;
 }
-
+.day-selector button:hover{
+    background: #757575;
+}
 .day-selector button.selected {
-    background: #2ecc71 !important;
+    background: #3498db !important;
 }
 
 table {
@@ -103,8 +107,13 @@ tr.special td {
     font-weight: bold;
 }
 
+.calendar-table {
+    width: 350px;
+    margin: 10px auto 0 auto;
+}
 .calendar-table td {
     padding: 0px;
+    border: 1px solid #ffffff;
 }
 
 .number-cell {
