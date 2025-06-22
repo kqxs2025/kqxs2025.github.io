@@ -20,7 +20,9 @@ body {
         display: block !important;
     }
     .container.print .imgfooter {
-        position: relative !important; top:0 !important; left: 0 !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
     }
 }
 
@@ -76,7 +78,7 @@ select,
 #todayBtn:hover {
     background: #2980b9;
 }
-.day-selector button:hover{
+.day-selector button:hover {
     background: #757575;
 }
 .day-selector button.selected {
@@ -192,6 +194,16 @@ tr.special td {
 }
 
 @media print {
+    @page {
+        margin: 0.5cm;
+        margin-top: 0.3cm;
+        margin-bottom: 0.3cm;
+        margin-left: 0.5cm;
+        margin-right: 0.5cm;
+    }
+    body, .container{
+        padding: 0;
+    }
     h1 {
         font-size: 20px;
     }
@@ -211,6 +223,7 @@ tr.special td {
         display: block;
     }
     .container {
+        margin-top: 30px;
         box-shadow: none !important;
     }
 }
