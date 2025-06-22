@@ -201,7 +201,8 @@ tr.special td {
         margin-left: 0.5cm;
         margin-right: 0.5cm;
     }
-    body, .container{
+    body,
+    .container {
         padding: 0;
     }
     h1 {
@@ -225,6 +226,10 @@ tr.special td {
     .container {
         margin-top: 30px;
         box-shadow: none !important;
+    }
+    .tabs,
+    .pagination {
+        display: none !important;
     }
 }
 .container.print {
@@ -295,4 +300,34 @@ tr.special td {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 16px;
+    gap: 4px;
+}
+.tab {
+    padding: 10px 24px;
+    cursor: pointer;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -2px;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.tab:not(.active):hover {
+    background: #ececec;
+    color: #1976d2;
+}
+.tab.active {
+    background: #fff;
+    color: #1976d2;
+    font-weight: bold;
+    border-bottom: 2px solid #fff;
+    z-index: 1;
 }
