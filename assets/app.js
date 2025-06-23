@@ -334,6 +334,7 @@ function init() {
                     "print",
                     document.getElementById("printMode").checked
                 );
+                document.querySelector(".tabs").style.display = document.getElementById("printMode").checked ? "none" : "";
         }
     });
 
@@ -373,4 +374,9 @@ function init() {
     loadData(`${pad(currentDay)}-${pad(currentMonth + 1)}-${currentYear}`);
 }
 
-init();
+if (
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("/index.html")
+) {
+    init();
+}

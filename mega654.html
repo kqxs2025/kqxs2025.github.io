@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kết quả sổ số Vietlot Mega 654</title>
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3, user-scalable=1" name="viewport"/>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <script>
+    var _paq = window._paq = window._paq || [];
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="https://dovesotop.matomo.cloud/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://cdn.matomo.cloud/dovesotop.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <style>
+        .circle {
+            transition: background 0.2s, color 0.2s;
+            cursor: default;
+        }
+        .circle:hover {
+            background: red;
+            color: yellow;
+        }
+        .circle {
+            display: inline-block;
+            margin: 0 2px 2px 0px;
+            padding: 4px 8px;
+            border: 2px solid red;
+            border-radius: 50%;
+            color: red;
+            font-weight: bold;
+            line-height: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+         <div class="tabs">
+            <a class="tab" id="xsTab" onclick="switchTab('xs')" href="/">Xổ số</a>
+            <a class="tab active" id="megaTab" onclick="switchTab('mega')" href="/mega654.html">Mega 654</a>
+        </div>
+
+        <h1 id="title">Kết quả sổ số Vietlot Mega 654</h1>
+
+        <div class="footer">
+            <img class="imgfooter" style="display: inline-block; width:100px;" src="assets/qr.png" alt="qr code to xo so" /><br>doveso.top<br><br>
+            <nav class="mini-menu">
+                <a href="about.html">Giới thiệu</a> |
+                <a href="privacy.html">Chính sách</a> |
+                <a href="contact.html">Liên hệ</a>
+            </nav>
+        </div>
+
+    </div>
+
+    <div id="modal">
+        <div id="modalContent">
+            <select id="provinceSelect"></select>
+            <input type="text" id="searchNumber" placeholder="Nhập 6 số" maxlength="6"
+                onkeypress="if(event.key==='Enter') searchNumber()" />
+            <button onclick="searchNumber()">Tìm</button>
+        </div>
+    </div>
+
+    <div id="alertBox" style="display:none;">
+        <div id="alertContent"></div>
+    </div>
+
+    <script src="/assets/app.js"></script>
+
+    <script>
+        fetch('data/mega654.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.createElement('div');
+                container.className = 'result-table-container';
+
+                const table = document.createElement('table');
+                table.className = 'result-table';
+
+                // Table header
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                ['Ngày', 'Kỳ', 'Kết quả'].forEach(text => {
+                    const th = document.createElement('th');
+                    th.textContent = text;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                // Prepare data as array and sort by date descending if needed
+                const items = data;
+                function dateToNumber(dateStr) {
+                    // Expecting dd-mm-yyyy
+                    if (!dateStr) return 0;
+                    const parts = dateStr.split('-');
+                    if (parts.length !== 3) return 0;
+                    return parseInt(parts[2] + parts[1] + parts[0], 10);
+                }
+                items.sort((a, b) => dateToNumber(b.date) - dateToNumber(a.date));
+                // Optional: sort by date descending (if date is in YYYY-MM-DD format)
+
+                const tbody = document.createElement('tbody');
+                table.appendChild(tbody);
+
+                container.appendChild(table);
+
+                // Insert table after the title
+                const title = document.getElementById('title');
+                title.parentNode.insertBefore(container, title.nextSibling);
+
+                // Pagination
+                const pageSize = 5;
+                let currentPage = 1;
+                const totalPages = Math.ceil(items.length / pageSize);
+
+                function renderPage(page) {
+                    tbody.innerHTML = '';
+                    const start = (page - 1) * pageSize;
+                    const end = Math.min(start + pageSize, items.length);
+                    for (let i = start; i < end; i++) {
+                        const item = items[i];
+                        const row = document.createElement('tr');
+
+                        const dateCell = document.createElement('td');
+                        dateCell.textContent = item.date || '';
+                        row.appendChild(dateCell);
+
+                        const periodCell = document.createElement('td');
+                        periodCell.textContent = item.round || '';
+                        row.appendChild(periodCell);
+
+                        const resultCell = document.createElement('td');
+                        let numbers = item.number;
+                        if (typeof numbers === 'string') {
+                            numbers = numbers.split(' ').map(num => num.trim()).filter(num => num);
+                        }
+                        if (Array.isArray(numbers)) {
+                            resultCell.innerHTML = numbers.map(num =>
+                                `<span class="circle">${num}</span>`
+                            ).join(' ');
+                        } else {
+                            resultCell.textContent = numbers || '';
+                        }
+                        row.appendChild(resultCell);
+
+                        tbody.appendChild(row);
+                    }
+                }
+
+                // Create pagination controls if needed
+                let paginationDiv = null;
+                if (items.length > pageSize) {
+                    paginationDiv = document.createElement('div');
+                    paginationDiv.className = 'pagination';
+                    paginationDiv.style.textAlign = 'center';
+                    paginationDiv.style.margin = '10px 0';
+
+                    function updatePagination() {
+                        paginationDiv.innerHTML = '';
+                        for (let i = 1; i <= totalPages; i++) {
+                            const btn = document.createElement('button');
+                            btn.textContent = i;
+                            btn.style.margin = '0 2px';
+                            btn.disabled = (i === currentPage);
+                            btn.onclick = function() {
+                                currentPage = i;
+                                renderPage(currentPage);
+                                updatePagination();
+                            };
+                            paginationDiv.appendChild(btn);
+                        }
+                    }
+
+                    container.appendChild(paginationDiv);
+                    updatePagination();
+                }
+
+                renderPage(currentPage);
+            })
+            .catch(error => {
+                console.error('Lỗi khi tải dữ liệu:', error);
+            });
+    </script>
+</body>
+
+</html>
