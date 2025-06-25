@@ -97,7 +97,7 @@
                 table.appendChild(thead);
 
                 // Prepare data as array and sort by date descending if needed
-                const items = data;
+                const items = Object.values(data);
                 function dateToNumber(dateStr) {
                     // Expecting dd-mm-yyyy
                     if (!dateStr) return 0;
