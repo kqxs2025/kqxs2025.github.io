@@ -32,9 +32,10 @@ function daysInMonth(month, year) {
     return new Date(year, month + 1, 0).getDate();
 }
 
-function updateTitle(title) {
+function updateTitle(data) {
+    var title = data.title;
     document.getElementById("title").innerText = title;
-    document.title = title;
+    document.title = title.replace('Xổ số Miền Nam', 'Dò vé số ' + data.regions.join(', '));
 }
 
 function formatNumber(number, onlyLast2) {
@@ -150,7 +151,7 @@ function loadData(dateStr) {
         })
         .then((data) => {
             fullDataCache = data;
-            updateTitle(data.title);
+            updateTitle(data);
             const onlyLast2 =
                 document.getElementById("lastTwoCheckbox").checked;
             renderTable(data, onlyLast2);
